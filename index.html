@@ -70,6 +70,90 @@
 						</nav>
 
 				</section>
+			<!-- Animation -->
+				<section id="animation">
+					<div id="el">
+						<img src="images/bacteria.png"  width="30" height="30">
+					</div>
+					<div class="card">
+						<img src="images/mascot_sick.png" width=200px>
+						<img src="images/mascot_happy.PNG" class="img-top" width=200px>
+					</div>
+
+					<style>
+					[id="animation"] {
+						margin: 0px;
+						background-image: url("images/animation_background.jpeg");
+						background-repeat: no-repeat;
+						background-size: 100%;
+						height: 500px;
+					}
+					[id="el"] {
+						position: absolute;
+						z-index: 1;
+					}
+						/*//////*/
+					.card {
+						width: 130px;
+						height: 195px;
+						position: relative;
+						display: inline-block;
+						left: 500px;
+						top: 50px;
+					}
+					.card .img-top {
+						width: 250px;
+						height: 335px;
+						display: none;
+						position: absolute;
+						top: -20px;
+						left: -25px;
+						/*z-index: 99;*/
+					}
+					.card:hover .img-top {
+						display: inline;
+					}
+					</style>
+
+					<script>
+						var el = document.getElementById("el"),
+						elWidth = el.offsetWidth,
+						elHeight = el.offsetHeight,
+						width = window.innerWidth,
+						height = window.innerHeight,
+						target = {
+							x: width / 2,
+							y: height / 2
+						},
+						position = {
+							x: height,
+							y: width
+						},
+						ease = 0.030;
+
+						window.addEventListener("mousemove", function(event) {
+						target.x = event.clientX +20;
+						target.y = event.clientY +345;
+						});
+
+						function update() {
+						var dx = target.x - position.x,
+							dy = target.y - position.y,
+							vx = dx * ease,
+							vy = dy * ease;
+
+						position.x += vx;
+						position.y += vy;
+
+						el.style.left = (position.x - elWidth / 2).toFixed() + "px";
+						el.style.top = (position.y - elHeight / 2).toFixed() + "px";
+
+						requestAnimationFrame(update);
+						}
+
+						update();
+					</script>
+				</section>
 
 			<!-- Intro -->
 				<section id="intro" class="wrapper style1">
